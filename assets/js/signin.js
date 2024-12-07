@@ -44,9 +44,15 @@ btnLogin.addEventListener("click", function (e) {
     var emailExist = false;
     var name = "";
     for (var i = 0; i < allUsers.length; i++) {
-      if (allUsers[i].email === userEmail.value) {
+      if (allUsers[i].email === userEmail.value && allUsers[i].password === userPassword.value) {
         emailExist = true;
-        name = allUsers[i].name;
+        let login_data = {
+          name: allUsers[i].name,
+          email: userEmail.value
+        };
+        
+        // save login
+        localStorage.setItem('login_data', JSON.stringify(login_data));
         break;
       }
     }
